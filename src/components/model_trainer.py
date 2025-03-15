@@ -48,7 +48,7 @@ class ModelTrainer:
 
             model_result:dict = evaluate_models(X_train, X_test, y_train, y_test, models)
 
-            best_model_score = max(sorted(model_result.keys()))
+            best_model_score = max(sorted(model_result.values()))
             best_model_name = next((key for key, value in model_result.items() if value == best_model_score ), None)
             bests_model= models[best_model_name]
 

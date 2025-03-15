@@ -1,9 +1,9 @@
-import dill
 import os
 from src import CustomException
 import sys
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+import dill
 
 def save_object(obj, path):
     try:

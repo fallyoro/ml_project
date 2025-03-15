@@ -3,9 +3,12 @@ import sys
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(project_root)
 sys.path.append(os.path.join(project_root, "src"))
+sys.path.append(os.path.join(project_root, "artifacts"))
 sys.path.append(os.path.join(project_root, "src", 'components'))
 
-from src.components.data_transformation import DataTransformation, DataTransformationConfig
+from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
+
 
 
 
@@ -54,8 +57,12 @@ class DataIngestion:
 
 if __name__ == '__main__':
     obj = DataIngestion()
-    train_data, test_data =  obj.initiate_data_ingestion()
+    train_data_path, test_data_path =  obj.initiate_data_ingestion()
     transformer = DataTransformation()
     
-    X, y,path =  transformer.initiate_data_transformation(train_data,test_data)
+    X, y, c=  transformer.initiate_data_transformation(train_data_path,test_data_path)
+    model = ModelTrainer()
+    model.initiate_model_trainer(X,y)
+
+    
     print('Hello world')
